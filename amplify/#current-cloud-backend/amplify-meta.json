@@ -1,0 +1,65 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "amplify-posd-ac-104739-authRole",
+			"UnauthRoleArn": "arn:aws:iam::861379048210:role/amplify-posd-ac-104739-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::861379048210:role/amplify-posd-ac-104739-authRole",
+			"Region": "us-east-2",
+			"DeploymentBucketName": "amplify-posd-ac-104739-deployment",
+			"UnauthRoleName": "amplify-posd-ac-104739-unauthRole",
+			"StackName": "amplify-posd-ac-104739",
+			"StackId": "arn:aws:cloudformation:us-east-2:861379048210:stack/amplify-posd-ac-104739/be785270-35e9-11ea-ac0a-06ecdd631b8a",
+			"AmplifyAppId": "d2dliqdmeb611b"
+		}
+	},
+	"auth": {
+		"posd91040121": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false,
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-posd-ac-104739-deployment/amplify-cfn-templates/auth/posd91040121-cloudformation-template.yml",
+				"logicalId": "authposd91040121"
+			},
+			"lastPushTimeStamp": "2020-01-13T11:15:45.238Z",
+			"output": {
+				"AppClientSecret": "vvr1ote3lhn4d1cqeiebq0p3q6ed1397lnnu4fkml4jcdjk1j43",
+				"UserPoolId": "us-east-2_Hzb8ZFmXY",
+				"AppClientIDWeb": "4jjj7neiflku4v7h514i7k7smd",
+				"AppClientID": "155t6u8d6puettt427rpofrp3l",
+				"IdentityPoolId": "us-east-2:dd89010a-2ff2-4df4-87e9-56806d893e51",
+				"IdentityPoolName": "posd91040121_identitypool_91040121__ac",
+				"UserPoolName": "posd91040121_userpool_91040121",
+				"HostedUIDomain": "posdb3e99f0e-b3e99f0e-ac",
+				"OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost/signin/\"],\"LogoutURLs\":[\"http://localhost/signout/\"]}"
+			},
+			"lastPushDirHash": "UognHpNy9i4djhc/qZlAPsT1vag="
+		},
+		"userPoolGroups": {
+			"service": "Cognito-UserPool-Groups",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "auth",
+					"resourceName": "posd91040121",
+					"attributes": [
+						"UserPoolId",
+						"AppClientIDWeb",
+						"AppClientID",
+						"IdentityPoolId"
+					]
+				}
+			],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-posd-ac-104739-deployment/amplify-cfn-templates/auth/template.json",
+				"logicalId": "authuserPoolGroups"
+			},
+			"lastPushTimeStamp": "2020-01-13T11:15:45.236Z",
+			"output": {
+				"posdGroupRole": "arn:aws:iam::861379048210:role/us-east-2_Hzb8ZFmXY-posdGroupRole"
+			},
+			"lastPushDirHash": "Dk83mz699vrp+jr0HQLNncJX6j4="
+		}
+	}
+}

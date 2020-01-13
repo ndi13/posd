@@ -1,0 +1,22 @@
+{
+    "ac": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-posd-ac-104739-authRole",
+            "UnauthRoleArn": "arn:aws:iam::861379048210:role/amplify-posd-ac-104739-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::861379048210:role/amplify-posd-ac-104739-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "amplify-posd-ac-104739-deployment",
+            "UnauthRoleName": "amplify-posd-ac-104739-unauthRole",
+            "StackName": "amplify-posd-ac-104739",
+            "StackId": "arn:aws:cloudformation:us-east-2:861379048210:stack/amplify-posd-ac-104739/be785270-35e9-11ea-ac0a-06ecdd631b8a",
+            "AmplifyAppId": "d2dliqdmeb611b"
+        },
+        "categories": {
+            "auth": {
+                "posd91040121": {
+                    "hostedUIProviderCreds": "[]"
+                }
+            }
+        }
+    }
+}

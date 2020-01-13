@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "aws-amplify": "^2.2.2",
+    "aws-amplify-react": "^3.1.3",
     "email-validator": "^2.0.4",
     "formik": "^2.1.1",
+    "package.json": "^2.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router": "^5.1.2",
@@ -18,5 +21,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "main": "index.js",
+  "repository": "git@github.com:ndi13/posd",
+  "author": "Elena-Andrada BOSINCEANU <andrada.bosinceanu@gmail.com>",
+  "license": "MIT"
 }

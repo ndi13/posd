@@ -2,79 +2,77 @@ import React from "react";
 import { Formik } from "formik";
 // import * as EmailValidator from "email-validator";
 import * as Yup from "yup";
-import logo from './logo.svg';
-const ValidatedLoginForm = () => (
+import logo from './logo.svg';import Amplify from 'aws-amplify';
+import awsconfig from './aws-exports';
+// import { withAuthenticator } from 'aws-amplify-react'; // or 'aws-amplify-react-native';
+import { CustomSignIn } from "./CustomSignIn";
+import { SignIn } from "aws-amplify-react";
+import App from "./App";
 
-  <Formik
-    initialValues={{ email: "", password: "" }}
-    onSubmit={(values, { setSubmitting }) => {
-      setTimeout(() => {
-        console.log("Logging in", values);
-        if (values.username == 'asd' && values.password == 'asdf1234') {
-          console.log('ok')
-        }
-        setSubmitting(false);
-      }, 500);
-    }}
+import { Authenticator } from "../node_modules/aws-amplify-react";
 
-    validationSchema={Yup.object().shape({
-      username: Yup.string()
-        .required("Required"),
-      password: Yup.string()
-        .required("No password provided.")
-        .min(8, "Password is too short - should be 8 chars minimum.")
-        .matches(/(?=.*[0-9])/, "Password must contain a number.")
-    })}
-  >
-    {props => {
-      const {
-        values,
-        touched,
-        errors,
-        isSubmitting,
-        handleChange,
-        handleBlur,
-        handleSubmit
-      } = props;
-      return (
-        <form onSubmit={handleSubmit}>
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Login</h2>
-        </div>
-          <label htmlFor="Username">Username</label>
-          <input
-            name="username"
-            type="text"
-            placeholder="Enter your username"
-            value={values.username}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className={errors.username && touched.username && "error"}
-          />
-          {errors.username && touched.username && (
-            <div className="input-feedback">{errors.username}</div>
-          )}
-          <label htmlFor="username">Password</label>
-          <input
-            name="password"
-            type="password"
-            placeholder="Enter your password"
-            value={values.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className={errors.password && touched.password && "error"}
-          />
-          {errors.password && touched.password && (
-            <div className="input-feedback">{errors.password}</div>
-          )}
-          <button type="submit" enabled={'asd'}>
-            Login
-          </button>
-        </form>
-      );
-    }}
-  </Formik>
-);
+class AppWithAuth extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+  }
 
-export default ValidatedLoginForm;
+  render() {
+    return (
+      <div>
+        <Authenticator hide={[SignIn]} amplifyConfig={config}>
+          <CustomSignIn />
+          <App />
+        </Authenticator>
+      </div>
+    );
+  }
+}
+
+export default AppWithAuth;
+
+
+const config = {
+  header: 'Sign Up',
+  hideAllDefaults: true,
+  defaultCountryCode: '40',
+  signUpFields: [
+    {
+      label: 'Username',
+      key: 'username',
+      required: true,
+      displayOrder: 1,
+      type: 'string'
+    },
+    {
+      label: 'Password',
+      key: 'password',
+      required: true,
+      displayOrder: 2,
+      type: 'password'
+    },
+    { 
+      label: 'PhoneNumber',
+      key: 'phone_number',
+      required: false,
+      displayOrder: 4,
+      type: 'string'
+    },
+    {
+      label: 'Email',
+      key: 'email',
+      required: false,
+      displayOrder: 3,
+      type: 'string'
+    }
+  ]
+};
+const usernameAttributes = 'Username';
+
+
+
+// export default withAuthenticator(ValidatedLoginForm, {
+//   signUpConfig,
+//   usernameAttributes
+// });
+
+// // export default withAuthenticator(ValidatedLoginForm, true);
