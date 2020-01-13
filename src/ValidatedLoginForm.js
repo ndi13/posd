@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
-import * as EmailValidator from "email-validator";
+// import * as EmailValidator from "email-validator";
 import * as Yup from "yup";
 import logo from './logo.svg';
 const ValidatedLoginForm = () => (
@@ -10,34 +10,15 @@ const ValidatedLoginForm = () => (
     onSubmit={(values, { setSubmitting }) => {
       setTimeout(() => {
         console.log("Logging in", values);
+        if (values.username == 'asd' && values.password == 'asdf1234') {
+          console.log('ok')
+        }
         setSubmitting(false);
       }, 500);
     }}
-    //********Handling validation messages yourself*******/
-    // validate={values => {
-    //   let errors = {};
-    //   if (!values.email) {
-    //     errors.email = "Required";
-    //   } else if (!EmailValidator.validate(values.email)) {
-    //     errors.email = "Invalid email address";
-    //   }
-
-    //   const passwordRegex = /(?=.*[0-9])/;
-    //   if (!values.password) {
-    //     errors.password = "Required";
-    //   } else if (values.password.length < 8) {
-    //     errors.password = "Password must be 8 characters long.";
-    //   } else if (!passwordRegex.test(values.password)) {
-    //     errors.password = "Invalida password. Must contain one number";
-    //   }
-
-    //   return errors;
-    // }}
-    //********Using Yum for validation********/
 
     validationSchema={Yup.object().shape({
-      email: Yup.string()
-        .email()
+      username: Yup.string()
         .required("Required"),
       password: Yup.string()
         .required("No password provided.")
@@ -61,20 +42,20 @@ const ValidatedLoginForm = () => (
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Login</h2>
         </div>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="Username">Username</label>
           <input
-            name="email"
+            name="username"
             type="text"
-            placeholder="Enter your email"
-            value={values.email}
+            placeholder="Enter your username"
+            value={values.username}
             onChange={handleChange}
             onBlur={handleBlur}
-            className={errors.email && touched.email && "error"}
+            className={errors.username && touched.username && "error"}
           />
-          {errors.email && touched.email && (
-            <div className="input-feedback">{errors.email}</div>
+          {errors.username && touched.username && (
+            <div className="input-feedback">{errors.username}</div>
           )}
-          <label htmlFor="email">Password</label>
+          <label htmlFor="username">Password</label>
           <input
             name="password"
             type="password"
@@ -87,7 +68,7 @@ const ValidatedLoginForm = () => (
           {errors.password && touched.password && (
             <div className="input-feedback">{errors.password}</div>
           )}
-          <button type="submit" disabled={isSubmitting}>
+          <button type="submit" enabled={'asd'}>
             Login
           </button>
         </form>
@@ -97,4 +78,3 @@ const ValidatedLoginForm = () => (
 );
 
 export default ValidatedLoginForm;
-
